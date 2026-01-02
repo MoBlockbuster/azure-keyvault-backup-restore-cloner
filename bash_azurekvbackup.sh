@@ -3,7 +3,7 @@
 # Add this tool into a regular runner like cronjob or Azure DevOps Pipeline for daily Azure Keyvault backups
 # Example: ./bash_azurekvbackup.sh -s XXXXXX-XXXXXXXX-XXXXXXX-XXXXXXXX -k KEYVAULTNAME -d BACKUPDIR to store the backups -i ID of AZURE CLIENT-ID -x AZURE CLIENT-SECRET -t AZURE TENANT-ID -l LOGILE
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 DATE=$(date +%Y.%m.%d_%H-%M)
 
 while getopts :m:s:k:d:i:x:t:l:va:c: opt
@@ -53,7 +53,7 @@ azkv_backup()
    for secret in $KV_SECRETS
    do
      echo "Backup secret: $secret" >> $LOGFILE
-     az keyvault secret backup --file $BACKUPDIR/$cert.secbackup --name $secret --vault-name $KEYVAULT
+     az keyvault secret backup --file $BACKUPDIR/$secret.secbackup --name $secret --vault-name $KEYVAULT
    done
    echo "Detected keys: $KV_KEY"
    for key in $KV_KEY
