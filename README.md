@@ -24,13 +24,13 @@ Use **MODE** = **LOCAL** to store the keyvault objects local on the machine
 Use **MODE** = **STORAGE** to store the keyvault objects into an azure storageaccount
 
 ```
-./bash_azurekvbackup.sh -m MODE -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l LOGFILE
+./bash_azurekvbackup.sh -m MODE -s Subscription-ID -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l LOGFILE
 
 Example:
 
-bash_azurekvbackup.sh -m LOCAL -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l /my/backup/path/kvbackup.log 
+bash_azurekvbackup.sh -m LOCAL -s Subscription-ID -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l /my/backup/path/kvbackup.log 
 
-bash_azurekvbackup.sh -m STORAGE -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l /my/backup/path/kvbackup.log -a STORAGEACCOUNTNAME -c CONTAINERNAME
+bash_azurekvbackup.sh -m STORAGE -s Subscription-ID -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -l /my/backup/path/kvbackup.log -a STORAGEACCOUNTNAME -c CONTAINERNAME
 ```
 
 ## Bash: restore
@@ -40,13 +40,13 @@ Use **MODE** = **LOCAL** to restore local keyvault objects into a keyvault
 Use **MODE** = **STORAGE** to restore from azure storageaccount
 
 ```
-./bash_azurekvrestore.sh -m MODE -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/restore/path -i Client-ID -x Client-secret -t Tenant-ID
+./bash_azurekvrestore.sh -m MODE -s Subscription-ID -k azure-keyvault-name -d /my/restore/path -i Client-ID -x Client-secret -t Tenant-ID
 
 Example:
 
-./bash_azurekvrestore.sh -m LOCAL -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID
+./bash_azurekvrestore.sh -m LOCAL -s Subscription-ID -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID
 
-./bash_azurekvrestore.sh -m STORAGE -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -a STORAGEACCOUNTNAME -c CONTAINERNAME -b BACKUPNAME.tar.gz
+./bash_azurekvrestore.sh -m STORAGE -s Subscription-ID -k azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID -a STORAGEACCOUNTNAME -c CONTAINERNAME -b BACKUPNAME.tar.gz
 
 -b must be the backupfile from bash_azurekvbackup.sh or ps1_azurekvbackup.sh
 ```
@@ -55,5 +55,5 @@ Example:
 **Note**: Currently it is not possible to clone keys. This is an Azure limitation.
 
 ```
-./bash_azurekvcloner.sh -s xxxxx-xxxxxx-xxxxxx-xxxxx-xxxxx -k source-azure-keyvault-name -b target-azure-keyvault-name -i Client-ID -x Client-secret -t Tenant-ID
+./bash_azurekvcloner.sh -s Subscription-ID -k source-azure-keyvault-name -b target-azure-keyvault-name -i Client-ID -x Client-secret -t Tenant-ID
 ```
