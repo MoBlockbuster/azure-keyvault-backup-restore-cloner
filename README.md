@@ -53,7 +53,26 @@ Example:
 
 ## Clone Key Vault objects into another Key Vault in a different Region
 **Note**: Currently it is not possible to clone keys. This is an Azure limitation.
+It's not possible in Azure to sync a keyvault object from one region into an another region.
+This tool can still do it with different modes.
 
+Use **MODE** = **LIVE** to sync keyvault objects into an another keyvault in different region in realtime. The target keyvault must already exist
+
+Use **MODE** = **STORE** to save the keyvault objects local as plaintext. This step is needed if you want to use later the **RESTORE** mode
+
+Use **MODE** = **RESTORE** to restore the keyvault object that you already saved as plaintext with the **STORE** mode. **Don't forget to remove the plaintext files**
+
+Example for **LIVE** mode
 ```
-./bash_azurekvcloner.sh -s Subscription-ID -k source-azure-keyvault-name -b target-azure-keyvault-name -i Client-ID -x Client-secret -t Tenant-ID
+./bash_azurekvcloner.sh -m LIVE -s Subscription-ID -k source-azure-keyvault-name -b target-azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID
+```
+
+Example for **STORE** mode
+```
+./bash_azurekvcloner.sh -m STORE -s Subscription-ID -k source-azure-keyvault-name -d /my/backup/path -i Client-ID -x Client-secret -t Tenant-ID
+```
+
+Example for **RESTORE** mode
+```
+./bash_azurekvcloner.sh -m RESTORE -s Subscription-ID -k source-azure-keyvault-name -b target-azure-keyvault-name -d /my/restore/path -i Client-ID -x Client-secret -t Tenant-ID
 ```
